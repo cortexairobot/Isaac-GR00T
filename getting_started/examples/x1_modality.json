@@ -2,21 +2,21 @@
     "state": {
         "single_arm": {
             "start": 0,
-            "end": 4
+            "end": 5
         },
         "gripper": {
-            "start": 4,
-            "end": 5
+            "start": 5,
+            "end": 6
         }
     },
     "action": {
         "single_arm": {
             "start": 0,
-            "end": 4
+            "end": 5
         },
         "gripper": {
-            "start": 4,
-            "end": 5
+            "start": 5,
+            "end": 6
         }
     },
     "video": {
