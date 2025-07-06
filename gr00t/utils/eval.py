@@ -40,9 +40,14 @@ def calc_mse_for_single_trajectory(
     traj_id: int,
     modality_keys: list,
     steps=300,
-    action_horizon=16,
+    action_horizon=None,
     plot=False,
 ):
+    # Auto-detect action horizon from policy if not provided
+    if action_horizon is None:
+        action_horizon = len(policy.get_modality_config()["action"].delta_indices)
+        print(f"Auto-detected action_horizon={action_horizon} from policy")
+    
     state_joints_across_time = []
     gt_action_across_time = []
     pred_action_across_time = []
