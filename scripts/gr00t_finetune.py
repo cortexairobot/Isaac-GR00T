@@ -211,9 +211,10 @@ def main(config: ArgsConfig):
         # Replace the action head
         model.action_head = new_action_head
         
-        # Update model config
+        # Update model config AND the action_head_cfg dictionary that gets saved
         model.config.action_horizon = data_action_horizon
         model.action_horizon = data_action_horizon
+        model.config.action_head_cfg["action_horizon"] = data_action_horizon
         
         # Set trainable parameters for the new action head
         model.action_head.set_trainable_parameters(
