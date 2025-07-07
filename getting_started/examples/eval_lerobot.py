@@ -136,7 +136,7 @@ class Gr00tRobotInferenceClient:
 
         # convert the action chunk to a list of dict[str, float]
         lerobot_actions = []
-        for i in range(16):
+        for i in range(50):
             action_dict = self._convert_to_lerobot_action(action_chunk, i)
             lerobot_actions.append(action_dict)
         return lerobot_actions
@@ -187,7 +187,7 @@ class EvalConfig:
     robot: RobotConfig  # the robot to use
     policy_host: str = "localhost"  # host of the gr00t server
     policy_port: int = 5555  # port of the gr00t server
-    action_horizon: int = 8  # number of actions to execute from the action chunk
+    action_horizon: int = 50  # number of actions to execute from the action chunk
     lang_instruction: str = "Grab pens and place into pen holder."
     play_sounds: bool = False  # whether to play sounds
     timeout: int = 60  # timeout in seconds
