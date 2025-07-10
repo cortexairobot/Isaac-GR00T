@@ -85,12 +85,12 @@ class ArgsConfig:
 
 def main(args: ArgsConfig):
     data_config = DATA_CONFIG_MAP[args.data_config]
-    
+
     # Set action_horizon from data config if not provided
     if args.action_horizon is None:
         args.action_horizon = len(data_config.action_indices)
         print(f"Using action_horizon={args.action_horizon} from data config '{args.data_config}'")
-    
+
     if args.model_path is not None:
         import torch
 

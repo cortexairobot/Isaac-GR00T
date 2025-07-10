@@ -180,8 +180,8 @@ def main(config: ArgsConfig):
     # ------------ step 2: load model ------------
     # First, get the data config to determine action horizon
     data_action_horizon = len(data_config_cls.action_indices)
-    
-    # Load model 
+
+    # Load model
     model = GR00T_N1_5.from_pretrained(
         pretrained_model_name_or_path=config.base_model_path,
         tune_llm=config.tune_llm,  # backbone's LLM
@@ -193,33 +193,36 @@ def main(config: ArgsConfig):
     # Update action_horizon to match data config
     # Need to recreate action head with correct config since it was initialized with old config
     if data_action_horizon != model.action_head.config.action_horizon:
-        print(f"Recreating action head with action_horizon {data_action_horizon} (was {model.action_head.config.action_horizon})")
-        
+        print(
+            f"Recreating action head with action_horizon {data_action_horizon} (was {model.action_head.config.action_horizon})"
+        )
+
         # Update the action head config
         new_action_head_config = model.action_head.config
         new_action_head_config.action_horizon = data_action_horizon
-        
+
         # Import the FlowmatchingActionHead class
-        from gr00t.model.action_head.flow_matching_action_head import FlowmatchingActionHead
-        
+        from gr00t.model.action_head.flow_matching_action_head import (
+            FlowmatchingActionHead,
+        )
+
         # Create new action head with updated config
         new_action_head = FlowmatchingActionHead(new_action_head_config)
-        
+
         # Copy the weights from the old action head to the new one
         new_action_head.load_state_dict(model.action_head.state_dict(), strict=False)
-        
+
         # Replace the action head
         model.action_head = new_action_head
-        
+
         # Update model config AND the action_head_cfg dictionary that gets saved
         model.config.action_horizon = data_action_horizon
         model.action_horizon = data_action_horizon
         model.config.action_head_cfg["action_horizon"] = data_action_horizon
-        
+
         # Set trainable parameters for the new action head
         model.action_head.set_trainable_parameters(
-            tune_projector=config.tune_projector, 
-            tune_diffusion_model=config.tune_diffusion_model
+            tune_projector=config.tune_projector, tune_diffusion_model=config.tune_diffusion_model
         )
 
     # Set the model's compute_dtype to bfloat16
