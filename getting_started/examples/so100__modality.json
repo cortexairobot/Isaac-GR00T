@@ -20,8 +20,8 @@
         }
     },
     "video": {
-        "webcam": {
-            "original_key": "observation.images.webcam"
+        "front": {
+            "original_key": "observation.images.front"
         }
     },
     "annotation": {
