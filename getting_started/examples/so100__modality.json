@@ -1,22 +1,38 @@
 {
     "state": {
-        "single_arm": {
+        "left_arm": {
             "start": 0,
             "end": 5
         },
-        "gripper": {
+        "left_gripper": {
             "start": 5,
             "end": 6
+        },
+        "right_arm": {
+            "start": 6,
+            "end": 11
+        },
+        "right_gripper": {
+            "start": 11,
+            "end": 12
         }
     },
     "action": {
-        "single_arm": {
+        "left_arm": {
             "start": 0,
             "end": 5
         },
-        "gripper": {
+        "left_gripper": {
             "start": 5,
             "end": 6
+        },
+        "right_arm": {
+            "start": 6,
+            "end": 11
+        },
+        "right_gripper": {
+            "start": 11,
+            "end": 12
         }
     },
     "video": {
