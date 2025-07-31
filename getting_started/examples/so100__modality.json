@@ -36,8 +36,14 @@
         }
     },
     "video": {
-        "front": {
-            "original_key": "observation.images.front"
+        "right": {
+            "original_key": "observation.images.right"
+        },
+        "top": {
+            "original_key": "observation.images.top"
+        },
+        "left": {
+            "original_key": "observation.images.left"
         }
     },
     "annotation": {

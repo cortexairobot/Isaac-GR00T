@@ -138,7 +138,7 @@ class FourierGr1ArmsOnlyDataConfig(BaseDataConfig):
 
 
 class So100DataConfig(BaseDataConfig):
-    video_keys = ["video.front"]
+    video_keys = ["video.right", "video.top", "video.left"]
     state_keys = ["state.left_arm", "state.left_gripper", "state.right_arm", "state.right_gripper"]
     action_keys = ["action.left_arm", "action.left_gripper", "action.right_arm", "action.right_gripper"]
     language_keys = ["annotation.human.task_description"]
